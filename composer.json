@@ -1,0 +1,10 @@
+{
+    "name": "fastware/mautic-xml-to-email-bundle",
+    "type": "mautic-plugin",
+    "authors": [
+        {
+            "name": "Fastware B.V.",
+            "email": "developers@fastware.nl"
+        }
+    ]
+}
