@@ -47,27 +47,38 @@ class Parser
 
 				// find feed items	        	
 				$itemMatches = array();
-				preg_match_all('|[\<\{]feeditem\s+loop\=\"(.+)\"[^\>\}]*[\>\}](.*)[\<\{]\/feeditem[\>\}]|msU', $content, $itemMatches, PREG_SET_ORDER);
+				preg_match_all('|[\<\{]feeditem\s+loop\=\"(.+)\"[^\>\}]*[\>\}](.*)[\<\{]\/feeditem[\>\}]|msU', $feedHtmlContent, $itemMatches, PREG_SET_ORDER);
 				foreach($itemMatches as $itemMatch) {
 					$feedItems = array();
-					$feedItemElement = $itemMatch[1];
+					$loopName = $itemMatch[1];
 					
-					// loop through feed items
-					foreach($feedXml as $name => $element) {
-						// find tag with right name
-						if ($name !== $feedItemElement)
-							continue;
-							
-						// loop through children
-						foreach($element->children() as $child) {
-							$feedItemContent = $itemMatch[2];
-							
-							// find/replace feeditem properties
-							foreach($child->children() as $key => $value) {
-								$feedItemContent = str_replace('{feeditem.'.$key.'}', trim((string) $value), $feedItemContent);
+					// find loop element
+					$loopElement = null;
+					if ($loopName !== 'root' && $loopName !== '') {
+						foreach($feedXml as $name => $element) {
+							// find tag with loopName
+							if ($name === $loopName) {
+								$loopElement = $element;
+								break;
 							}
-							$feedItems[] = $feedItemContent;
 						}
+					} else {
+						$loopElement = $feedXml;
+					}
+					
+					// check loop element
+					if ($loopElement === null)
+						throw new \Exception('Cannot find loop element "'.$loopName.'"');
+					
+					// loop through children
+					foreach($loopElement->children() as $child) {
+						$feedItemContent = $itemMatch[2];
+						
+						// find/replace feeditem properties
+						foreach($child->children() as $key => $value) {
+							$feedItemContent = str_replace('{feeditem.'.$key.'}', trim((string) $value), $feedItemContent);
+						}
+						$feedItems[] = $feedItemContent;
 					}
 
 					// add feed items

@@ -26,7 +26,7 @@ This plugin has been tested with PHP 7.4 and PHP 8.0.
 5. You should now see the "Xml To Email" in your list of plugins.
 
 ## [Usage](id:usage)
-Use the "raw" component of the grapesjs e-mail editor. In the content of the component set to following content:
+Use the "raw" component (`<wj-raw>`) of the grapesjs e-mail editor. In the content of the component set to following content:
 
 ```
 <feed url="<<FEEDURL>>">
@@ -56,7 +56,8 @@ Selects the feed url
 ### The following tag must be used in the <feeditem> block:
 
 ##### loop
-Selects the tag which is used to loop through the items
+Selects the tag which is used to loop through the items.
+Value can be empty or "root" to read all items from the root level.
 
 ### Example XML
 

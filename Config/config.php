@@ -3,7 +3,7 @@
 return [
     'name'        => 'XML To Email',
     'description' => 'Enables XML feed in mail',
-    'version'     => '1.0',
+    'version'     => '1.1',
     'author'      => 'Fastware B.V.',
     'services' => [
         'events' => [
