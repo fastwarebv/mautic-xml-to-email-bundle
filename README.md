@@ -26,7 +26,8 @@ This plugin has been tested with PHP 7.4 and PHP 8.0.
 5. You should now see the "Xml To Email" in your list of plugins.
 
 ## [Usage](id:usage)
-Use the "raw" component (`<wj-raw>`) of the grapesjs e-mail editor. In the content of the component set to following content:
+The feed-tag works best in the text component (`<wj-text>`) or raw component (`<wj-raw>`) in the grapesjs e-mail editor.
+In the content of the component set to following content:
 
 ```
 <feed url="<<FEEDURL>>">

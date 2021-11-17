@@ -47,7 +47,7 @@ class Parser
 
 				// find feed items	        	
 				$itemMatches = array();
-				preg_match_all('|[\<\{]feeditem\s+loop\=\"(.+)\"[^\>\}]*[\>\}](.*)[\<\{]\/feeditem[\>\}]|msU', $feedHtmlContent, $itemMatches, PREG_SET_ORDER);
+				preg_match_all('|[\<\{]feeditem\s+loop\=\"(.*)\"[^\>\}]*[\>\}](.*)[\<\{]\/feeditem[\>\}]|msU', $feedHtmlContent, $itemMatches, PREG_SET_ORDER);
 				foreach($itemMatches as $itemMatch) {
 					$feedItems = array();
 					$loopName = $itemMatch[1];
