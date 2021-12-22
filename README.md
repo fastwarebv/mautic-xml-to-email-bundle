@@ -37,7 +37,7 @@ In the content of the component set to following content:
         <p><small>{feeditem.date}</small></p>
         <p>{feeditem.description}</p>
         <p><img src="{feeditem.image}" alt="{feeditem.title}"></p>
-    <{/feeditem>
+    </feeditem>
 </feed>
 ```
 
